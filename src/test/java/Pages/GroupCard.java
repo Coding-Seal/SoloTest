@@ -15,7 +15,9 @@ public class GroupCard {
         CAPTION_ELEM = ITEM.$x(".//a[@class='group-detailed-card_name']").shouldBe(visible);
     }
     public String getGroupID(){
-        return ITEM.shouldBe(visible).getAttribute("data-group-id");
+        String href = ITEM.shouldBe(visible).getAttribute("data-l");
+        assert href != null;
+        return href.substring(href.lastIndexOf(",")+1);
     }
     public void addToGroupToBookMarks(){
         CAPTION_ELEM.shouldBe(visible).hover();

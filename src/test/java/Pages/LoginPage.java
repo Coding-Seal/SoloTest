@@ -45,5 +45,4 @@ public class LoginPage {
     public void pressInputButton() {
         INPUT_BUTTON.click();
     }
-
 }

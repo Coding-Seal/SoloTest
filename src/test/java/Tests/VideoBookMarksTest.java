@@ -1,8 +1,12 @@
 package Tests;
 
-import Pages.*;
-import org.junit.After;
-import org.junit.Test;
+import Pages.VideosPage;
+import Pages.BookMarkVideoPage;
+import Pages.BookMarkPage;
+import Pages.FeedPage;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
@@ -11,16 +15,12 @@ public class VideoBookMarksTest extends BaseTest{
     /**
      * Данные для работы тестов
      */
-    private static final String OK_BASE_URL = "https://ok.ru/";
-    private static final String LOGIN = "technoPol13";
-    private static final String PASSWORD = "technoPolis2022";
 
     private BookMarkVideoPage BOOKMARK_VIDEO_PAGE;
 
+    @DisplayName("Correct video added")
     @Test
-    public void goToVideoPage() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(OK_BASE_URL);
-        loginPage.setLoginOnBlock(LOGIN).setPasswordOnBlock(PASSWORD).pressInputButton();
+    public void goToVideoPage() {
 
         FeedPage feedPage = new FeedPage();
 
@@ -36,7 +36,7 @@ public class VideoBookMarksTest extends BaseTest{
         assertWithMessage("Comparing IDs of videos (should equal)").that(hrefVideo).
                 endsWith(hrefVideoBookmark.substring(hrefVideoBookmark.lastIndexOf("/")));
     }
-    @After
+    @AfterEach
     public void tidyUp(){
         BOOKMARK_VIDEO_PAGE.deleteAllBookmarks();
 
